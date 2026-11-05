@@ -250,13 +250,24 @@
       background: var(--white);
       color: var(--ink);
       box-shadow: 0 24px 80px rgba(0, 0, 0, .35);
+      opacity: 0;
+      transform: translateY(12px) scale(.98);
+      transition: opacity .22s ease, transform .22s ease, display .22s allow-discrete, overlay .22s allow-discrete;
     }
-    .prayer-dialog::backdrop { background: rgba(25, 19, 15, .76); backdrop-filter: blur(4px); }
+    .prayer-dialog[open] { opacity: 1; transform: translateY(0) scale(1); }
+    .prayer-dialog::backdrop { background: rgba(25, 19, 15, .76); backdrop-filter: blur(4px); opacity: 0; transition: opacity .22s ease, display .22s allow-discrete, overlay .22s allow-discrete; }
+    .prayer-dialog[open]::backdrop { opacity: 1; }
+    @starting-style {
+      .prayer-dialog[open] { opacity: 0; transform: translateY(12px) scale(.98); }
+      .prayer-dialog[open]::backdrop { opacity: 0; }
+    }
     .prayer-dialog-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 20px; }
     .prayer-dialog-header h2 { margin: 0; font: 600 1.15rem var(--serif); }
     .prayer-dialog-close { display: grid; width: 38px; height: 38px; flex: 0 0 auto; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: transparent; font-size: 1.5rem; line-height: 1; cursor: pointer; }
     .prayer-dialog-close:hover { background: #fff2e5; color: var(--brand-orange); }
     .prayer-dialog img { width: 100%; max-height: calc(100vh - 100px); object-fit: contain; background: #171717; }
+    .fellowship-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; max-height: calc(100vh - 90px); padding: 0 16px 16px; overflow-y: auto; }
+    .fellowship-gallery img { width: 100%; height: auto; max-height: none; aspect-ratio: 4 / 3; border-radius: 12px; object-fit: cover; background: #171717; }
 
     .ministries { padding: 108px 0; }
     .ministry-heading-row { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 40px; }
@@ -547,26 +558,27 @@
         <div class="service-grid">
           <article class="service-card" data-reveal>
             <span class="service-icon"><svg class="icon"><use href="#i-sun"/></svg></span>
-            <h3>Sunday Worship</h3>
+            <h3><button class="service-trigger" id="sunday-worship-trigger" type="button" aria-haspopup="dialog" aria-controls="sunday-worship-dialog">Sunday Worship</button></h3>
             <p>A joyful gathering for worship, teaching, and fellowship.</p>
             <div class="service-time"><svg class="icon"><use href="#i-clock"/></svg>Sunday · 10:30AM to 12:00PM</div>
           </article>
           <article class="service-card" data-reveal>
             <span class="service-icon"><svg class="icon"><use href="#i-book"/></svg></span>
-            <h3>Fellowship</h3>
+            <h3><button class="service-trigger" id="fellowship-trigger" type="button" aria-haspopup="dialog" aria-controls="fellowship-dialog">Fellowship</button></h3>
             <p>Explore Scripture and grow in faith alongside one another.</p>
             <div class="service-time"><svg class="icon"><use href="#i-clock"/></svg>After Service</div>
           </article>
           <article class="service-card" data-reveal>
             <span class="service-icon"><svg class="icon"><use href="#i-hands"/></svg></span>
             <h3><button class="service-trigger" id="prayer-meeting-trigger" type="button" aria-haspopup="dialog" aria-controls="prayer-meeting-dialog">Prayer Meeting</button></h3>
-            <p>Share, listen, and lift one another up in prayer.</p>
+            <p>Share, listen, and lift one another up in prayer. google meet link href="https://meet.google.com/sen-eokx-xdo
+              "></p>
             <div class="service-time"><svg class="icon"><use href="#i-clock"/></svg>Wednesday · 7PM to 8PM</div>
           </article>
           <article class="service-card" data-reveal>
             <span class="service-icon"><svg class="icon"><use href="#i-users"/></svg></span>
-            <h3>Life Together</h3>
-            <p>Seasonal gatherings and activities for every generation.</p>
+            <h3>Kids and Youth</h3>
+            <p>Encouraging young hearts to know Jesus and grow in faith.</p>
             <div class="service-time"><svg class="icon"><use href="#i-heart"/></svg>Everyone is welcome</div>
           </article>
         </div>
@@ -706,6 +718,31 @@
     <img src="prayer%20meeting.png" alt="Prayer meeting participants gathered on a video call">
   </dialog>
 
+  <dialog class="prayer-dialog" id="sunday-worship-dialog" aria-labelledby="sunday-worship-dialog-title">
+    <div class="prayer-dialog-header">
+      <h2 id="sunday-worship-dialog-title">Sunday Worship</h2>
+      <form method="dialog">
+        <button class="prayer-dialog-close" type="submit" aria-label="Close Sunday Worship photo">&times;</button>
+      </form>
+    </div>
+    <img src="sunday%20worship.png" alt="The congregation gathered for Sunday worship">
+  </dialog>
+
+  <dialog class="prayer-dialog" id="fellowship-dialog" aria-labelledby="fellowship-dialog-title">
+    <div class="prayer-dialog-header">
+      <h2 id="fellowship-dialog-title">Fellowship</h2>
+      <form method="dialog">
+        <button class="prayer-dialog-close" type="submit" aria-label="Close fellowship photos">&times;</button>
+      </form>
+    </div>
+    <div class="fellowship-gallery">
+      <img src="fellowship1.png" alt="Fellowship group gathered together">
+      <img src="fellowship.png" alt="Fellowship group discussion">
+      <img src="fellowship2.png" alt="Fellowship group meeting">
+      <img src="fellowship3.png" alt="Youth fellowship group discussion">
+    </div>
+  </dialog>
+
   <footer class="footer">
     <div class="container footer-inner">
       <a class="brand" href="#home">
@@ -749,6 +786,22 @@
     prayerMeetingTrigger.addEventListener("click", () => prayerMeetingDialog.showModal());
     prayerMeetingDialog.addEventListener("click", (event) => {
       if (event.target === prayerMeetingDialog) prayerMeetingDialog.close();
+    });
+
+    const fellowshipTrigger = document.querySelector("#fellowship-trigger");
+    const fellowshipDialog = document.querySelector("#fellowship-dialog");
+
+    fellowshipTrigger.addEventListener("click", () => fellowshipDialog.showModal());
+    fellowshipDialog.addEventListener("click", (event) => {
+      if (event.target === fellowshipDialog) fellowshipDialog.close();
+    });
+
+    const sundayWorshipTrigger = document.querySelector("#sunday-worship-trigger");
+    const sundayWorshipDialog = document.querySelector("#sunday-worship-dialog");
+
+    sundayWorshipTrigger.addEventListener("click", () => sundayWorshipDialog.showModal());
+    sundayWorshipDialog.addEventListener("click", (event) => {
+      if (event.target === sundayWorshipDialog) sundayWorshipDialog.close();
     });
 
     const revealItems = document.querySelectorAll("[data-reveal]");
