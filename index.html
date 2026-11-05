@@ -139,7 +139,7 @@
       position: absolute;
       z-index: -2;
       inset: 0;
-      background: url("https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=2200&q=88") center 47%/cover no-repeat;
+      background: url("monthly%20topic.png") center 47%/cover no-repeat;
       content: "";
       transform: scale(1.02);
     }
@@ -232,10 +232,31 @@
     .service-icon { display: grid; width: 49px; height: 49px; place-items: center; border-radius: 16px; background: #fae6d2; color: var(--brand-orange); }
     .service-icon .icon { width: 23px; height: 23px; }
     .service-card h3 { margin: 23px 0 8px; font: 600 1.26rem var(--serif); }
+    .service-trigger { padding: 0; border: 0; background: none; font: inherit; text-align: left; cursor: pointer; }
+    .service-trigger:hover { color: var(--brand-orange); }
+    .service-trigger:focus-visible { outline: 2px solid var(--brand-orange); outline-offset: 4px; }
     .service-card p { min-height: 46px; margin: 0; color: var(--muted); font-size: .81rem; }
     .service-time { display: flex; align-items: center; gap: 7px; margin-top: 19px; color: var(--brand-orange); font-size: .77rem; font-weight: 600; }
     .service-time .icon { width: 16px; height: 16px; }
     .schedule-note { margin: 24px auto 0; color: var(--muted); font-size: .78rem; text-align: center; }
+    .prayer-dialog {
+      width: min(1000px, calc(100% - 32px));
+      max-width: none;
+      max-height: calc(100% - 32px);
+      padding: 0;
+      overflow: hidden;
+      border: 0;
+      border-radius: 20px;
+      background: var(--white);
+      color: var(--ink);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .35);
+    }
+    .prayer-dialog::backdrop { background: rgba(25, 19, 15, .76); backdrop-filter: blur(4px); }
+    .prayer-dialog-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 20px; }
+    .prayer-dialog-header h2 { margin: 0; font: 600 1.15rem var(--serif); }
+    .prayer-dialog-close { display: grid; width: 38px; height: 38px; flex: 0 0 auto; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: transparent; font-size: 1.5rem; line-height: 1; cursor: pointer; }
+    .prayer-dialog-close:hover { background: #fff2e5; color: var(--brand-orange); }
+    .prayer-dialog img { width: 100%; max-height: calc(100vh - 100px); object-fit: contain; background: #171717; }
 
     .ministries { padding: 108px 0; }
     .ministry-heading-row { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 40px; }
@@ -491,7 +512,7 @@
     <section class="welcome" id="about">
       <div class="container welcome-grid">
         <div class="welcome-image" data-reveal>
-          <img src="monthly%20topic.png" alt="Monthly topic: Wake Up Church! Revelation 3:2" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1100&q=85" alt="Friends spending time together outdoors" loading="lazy">
           <div class="image-note">
             <span class="image-note-mark"><svg class="icon"><use href="#i-heart"/></svg></span>
             <div><strong>Rooted in love</strong><span>Growing together in Christ</span></div>
@@ -538,7 +559,7 @@
           </article>
           <article class="service-card" data-reveal>
             <span class="service-icon"><svg class="icon"><use href="#i-hands"/></svg></span>
-            <h3>Prayer Meeting</h3>
+            <h3><button class="service-trigger" id="prayer-meeting-trigger" type="button" aria-haspopup="dialog" aria-controls="prayer-meeting-dialog">Prayer Meeting</button></h3>
             <p>Share, listen, and lift one another up in prayer.</p>
             <div class="service-time"><svg class="icon"><use href="#i-clock"/></svg>Wednesday · 7PM to 8PM</div>
           </article>
@@ -675,6 +696,16 @@
     </section>
   </main>
 
+  <dialog class="prayer-dialog" id="prayer-meeting-dialog" aria-labelledby="prayer-dialog-title">
+    <div class="prayer-dialog-header">
+      <h2 id="prayer-dialog-title">Prayer Meeting</h2>
+      <form method="dialog">
+        <button class="prayer-dialog-close" type="submit" aria-label="Close prayer meeting image">&times;</button>
+      </form>
+    </div>
+    <img src="prayer%20meeting.png" alt="Prayer meeting participants gathered on a video call">
+  </dialog>
+
   <footer class="footer">
     <div class="container footer-inner">
       <a class="brand" href="#home">
@@ -711,6 +742,14 @@
     });
 
     document.querySelector("#year").textContent = new Date().getFullYear();
+
+    const prayerMeetingTrigger = document.querySelector("#prayer-meeting-trigger");
+    const prayerMeetingDialog = document.querySelector("#prayer-meeting-dialog");
+
+    prayerMeetingTrigger.addEventListener("click", () => prayerMeetingDialog.showModal());
+    prayerMeetingDialog.addEventListener("click", (event) => {
+      if (event.target === prayerMeetingDialog) prayerMeetingDialog.close();
+    });
 
     const revealItems = document.querySelectorAll("[data-reveal]");
     if ("IntersectionObserver" in window) {
