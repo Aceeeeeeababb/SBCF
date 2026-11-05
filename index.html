@@ -185,7 +185,7 @@
     .hero-glass span { display: block; margin-top: 2px; color: rgba(255,255,255,.76); font-size: .74rem; }
 
     .welcome { padding: 106px 0 110px; }
-    .welcome-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(48px, 8vw, 112px); }
+    .welcome-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: clamp(48px, 8vw, 72px); }
     .welcome-image { position: relative; min-height: 460px; }
     .welcome-image > img { height: 460px; border-radius: 190px 190px 22px 22px; object-fit: cover; object-position: center; }
     .image-note {
@@ -209,9 +209,34 @@
     .image-note span { display: block; color: var(--muted); font-size: .68rem; }
     .welcome-copy .section-heading { margin-bottom: 22px; }
     .welcome-copy > p { max-width: 510px; color: var(--muted); }
-    .values-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 30px 0 32px; padding: 22px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-    .value strong { display: block; font: 600 1rem var(--serif); }
-    .value span { display: block; margin-top: 4px; color: var(--muted); font-size: .75rem; }
+    .values-row { display: grid; grid-column: 1 / -1; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 4px; }
+    .value {
+      position: relative;
+      min-width: 0;
+      padding: 28px 26px 30px;
+      overflow: hidden;
+      border: 1px solid rgba(126, 84, 48, .13);
+      border-radius: 20px;
+      background: linear-gradient(145deg, #fff 0%, #fffaf4 100%);
+      box-shadow: 0 12px 34px rgba(65, 42, 24, .055);
+    }
+    .value::before {
+      display: block;
+      margin-bottom: 14px;
+      color: var(--brand-orange);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+    }
+    .value:nth-child(1)::before { content: "01  /  PURPOSE"; }
+    .value:nth-child(2)::before { content: "02  /  DIRECTION"; }
+    .value:nth-child(3)::before { content: "03  /  HOW WE LIVE"; }
+    .value strong { display: block; font: 600 1.35rem/1.2 var(--serif); letter-spacing: -.02em; }
+    .value > span { display: block; margin-top: 14px; color: var(--muted); font-size: .84rem; line-height: 1.75; }
+    .value i { color: #594334; }
+    .value:last-child { grid-column: 1 / -1; }
+    .core-value-list { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+    .core-value-list > span { padding-left: 15px; border-left: 2px solid rgba(201, 104, 8, .35); }
 
     .services { padding: 100px 0 108px; background: #fff2e5; }
     .center-heading { text-align: center; }
@@ -423,6 +448,11 @@
       .welcome-image > img { height: 375px; }
       .image-note { right: -10px; }
       .welcome-copy { grid-row: 1; }
+      .values-row { grid-template-columns: 1fr; gap: 14px; }
+      .value:last-child { grid-column: auto; }
+      .value { padding: 24px 22px; }
+      .core-value-list { grid-template-columns: 1fr; gap: 12px; }
+      .core-value-list > span { padding-top: 3px; padding-bottom: 3px; }
       .services, .ministries, .events, .message, .community { padding: 78px 0; }
       .section-top { margin-bottom: 35px; }
       .ministry-heading-row { display: block; }
@@ -447,9 +477,8 @@
       .hero-note { margin-top: 34px; }
       .hero-actions .button { min-height: 48px; padding: 0 19px; }
       .section-heading { font-size: 2.35rem; }
-      .values-row { gap: 9px; }
-      .value strong { font-size: .92rem; }
-      .value span { font-size: .68rem; }
+      .value strong { font-size: 1.2rem; }
+      .value > span { font-size: .82rem; }
       .service-grid, .ministry-grid { grid-template-columns: 1fr; }
       .service-card { min-height: 0; }
       .service-card p { min-height: 0; }
@@ -535,16 +564,13 @@
           <h2 class="section-heading">Faith is a journey best shared.</h2>
           <p>San Bartolome Christian Fellowship is a community learning to follow Jesus in everyday life. We gather to worship, grow through God’s Word, care for one another, and share hope with our neighbors.</p>
           <p>Whether you’re exploring faith or looking for a church family, you are welcome to take your next step with us.</p>
-          <div class="values-row">
-            <div class="value"><strong>Our mission</strong><span><i>"To glorify God by obeying the great commission of making deciples that will make diciples from generation to generation"<br>
-              <br> Jesus said, go and make disciples of all nation, baptizing them in the name of the Father and of the Son and Holy Spirit, and teaching them to obey everything them to obey everything i have commanded you<br><br>Matthew 28:18-19</span></i></div>
-            <div class="value"><strong>Our vision</strong><span>Our vision is ti see every believers... <br><br><i>"Grow spiritually, being equipped for fulfilling the greate comission and for the work of the ministry"</i><br><br>So Christ himeself gave the apostles, the phrophets, the pastors and evangelists, the pastors and teachers, to equip his people for works of service, so that the body of Christ may be built up until we all reach unity in the faith and in the knowledge of Son of God and become mature, attaining to the whole measure of fullness of Christ.<br>Ephesians 4:11-13 </span></div>
-            <div class="value"><strong>Our Core values</strong><span>Loving God and others Uncondtionally
-              <br> every member is a minister
-              <br> always do our best, because we are  serving God not men
-            </span></div>
-          </div>
           <a class="text-link" href="#ministries">Discover our community <svg class="icon"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="values-row">
+          <div class="value"><strong>Our mission</strong><span><i>"To glorify God by obeying the great commission of making deciples that will make diciples from generation to generation"<br>
+            <br> Jesus said, go and make disciples of all nation, baptizing them in the name of the Father and of the Son and Holy Spirit, and teaching them to obey everything them to obey everything i have commanded you<br><br>Matthew 28:18-19</i></span></div>
+          <div class="value"><strong>Our vision</strong><span>Our vision is ti see every believers... <br><br><i>"Grow spiritually, being equipped for fulfilling the greate comission and for the work of the ministry"</i><br><br>So Christ himeself gave the apostles, the phrophets, the pastors and evangelists, the pastors and teachers, to equip his people for works of service, so that the body of Christ may be built up until we all reach unity in the faith and in the knowledge of Son of God and become mature, attaining to the whole measure of fullness of Christ.<br>Ephesians 4:11-13 </span></div>
+          <div class="value"><strong>Our Core values</strong><span class="core-value-list"><span>Loving God and others Uncondtionally</span><span>every member is a minister</span><span>always do our best, because we are  serving God not men</span></span></div>
         </div>
       </div>
     </section>
