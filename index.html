@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#fffaf3">
   <meta name="description" content="San Bartolome Christian Fellowship — growing in faith, living in grace, sharing His love.">
+  <link rel="icon" type="image/jpeg" href="sbcf-logo.jpg">
   <title>SBCF — San Bartolome Christian Fellowship</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,10 +14,9 @@
     :root {
       --ink: #292522;
       --muted: #766b62;
-      --forest: #b84f00;
-      --forest-deep: #913d00;
-      --sage: #e8c9a9;
-      --gold: #d96a12;
+      --brand-orange: #c96808;
+      --brand-orange-deep: #a34a00;
+      --gold: #d97913;
       --cream: #fffaf3;
       --white: #fff;
       --line: rgba(56, 42, 31, .13);
@@ -78,19 +78,19 @@
       padding: 0 24px;
       border: 1px solid transparent;
       border-radius: 999px;
-      background: var(--forest);
+      background: var(--brand-orange);
       color: var(--white);
       font-size: .88rem;
       font-weight: 600;
       transition: background .25s ease, color .25s ease, border-color .25s ease, transform .25s ease, box-shadow .25s ease;
       cursor: pointer;
     }
-    .button:hover { transform: translateY(-2px); background: var(--forest-deep); box-shadow: 0 10px 24px rgba(104, 48, 9, .2); }
-    .button-light { background: var(--white); color: var(--forest); }
+    .button:hover { transform: translateY(-2px); background: var(--brand-orange-deep); box-shadow: 0 10px 24px rgba(104, 48, 9, .2); }
+    .button-light { background: var(--white); color: var(--brand-orange); }
     .button-light:hover { background: #fff2e4; }
     .button-outline { border-color: rgba(56, 42, 31, .2); background: transparent; color: var(--ink); }
-    .button-outline:hover { border-color: var(--forest); background: var(--white); color: var(--forest); }
-    .text-link { display: inline-flex; align-items: center; gap: 8px; color: var(--forest); font-size: .88rem; font-weight: 700; }
+    .button-outline:hover { border-color: var(--brand-orange); background: var(--white); color: var(--brand-orange); }
+    .text-link { display: inline-flex; align-items: center; gap: 8px; color: var(--brand-orange); font-size: .88rem; font-weight: 700; }
     .text-link .icon { width: 17px; height: 17px; transition: transform .2s ease; }
     .text-link:hover .icon { transform: translateX(4px); }
 
@@ -111,7 +111,7 @@
       height: 50px;
       overflow: hidden;
       place-items: center;
-      border: 1px solid rgba(184, 79, 0, .24);
+      border: 1px solid rgba(201, 104, 8, .24);
       border-radius: 50%;
       background: #fff;
     }
@@ -121,9 +121,9 @@
     .brand-copy span { margin-top: 4px; color: var(--muted); font-size: .66rem; letter-spacing: .025em; }
     .nav-links { display: flex; align-items: center; gap: clamp(17px, 2.2vw, 30px); }
     .nav-links a:not(.nav-visit) {     color: #62574e; font-size: .8rem; font-weight: 500; transition: color .2s ease; }
-    .nav-links a:not(.nav-visit):hover, .nav-links a.active { color: var(--forest); }
-    .nav-visit { padding: 10px 18px; border-radius: 999px; background: var(--forest); color: white; font-size: .78rem; font-weight: 600; transition: background .2s ease; }
-    .nav-visit:hover { background: var(--forest-deep); }
+    .nav-links a:not(.nav-visit):hover, .nav-links a.active { color: var(--brand-orange); }
+    .nav-visit { padding: 10px 18px; border-radius: 999px; background: var(--brand-orange); color: white; font-size: .78rem; font-weight: 600; transition: background .2s ease; }
+    .nav-visit:hover { background: var(--brand-orange-deep); }
     .menu-toggle { display: none; width: 44px; height: 44px; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: transparent; cursor: pointer; }
 
     .hero {
@@ -203,7 +203,7 @@
       box-shadow: var(--shadow);
       backdrop-filter: blur(15px);
     }
-    .image-note-mark { display: grid; width: 40px; height: 40px; flex: 0 0 auto; place-items: center; border-radius: 13px; background: #fae6d2; color: var(--forest); }
+    .image-note-mark { display: grid; width: 40px; height: 40px; flex: 0 0 auto; place-items: center; border-radius: 13px; background: #fae6d2; color: var(--brand-orange); }
     .image-note-mark .icon { width: 20px; height: 20px; }
     .image-note strong { display: block; font: 600 1.1rem var(--serif); }
     .image-note span { display: block; color: var(--muted); font-size: .68rem; }
@@ -229,11 +229,11 @@
       backdrop-filter: blur(12px);
     }
     .service-card:hover { transform: translateY(-5px); background: rgba(255,255,255,.9); box-shadow: var(--shadow); }
-    .service-icon { display: grid; width: 49px; height: 49px; place-items: center; border-radius: 16px; background: #fae6d2; color: var(--forest); }
+    .service-icon { display: grid; width: 49px; height: 49px; place-items: center; border-radius: 16px; background: #fae6d2; color: var(--brand-orange); }
     .service-icon .icon { width: 23px; height: 23px; }
     .service-card h3 { margin: 23px 0 8px; font: 600 1.26rem var(--serif); }
     .service-card p { min-height: 46px; margin: 0; color: var(--muted); font-size: .81rem; }
-    .service-time { display: flex; align-items: center; gap: 7px; margin-top: 19px; color: var(--forest); font-size: .77rem; font-weight: 600; }
+    .service-time { display: flex; align-items: center; gap: 7px; margin-top: 19px; color: var(--brand-orange); font-size: .77rem; font-weight: 600; }
     .service-time .icon { width: 16px; height: 16px; }
     .schedule-note { margin: 24px auto 0; color: var(--muted); font-size: .78rem; text-align: center; }
 
@@ -243,7 +243,7 @@
     .ministry-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
     .ministry-card { display: flex; gap: 17px; padding: 25px 23px; border: 1px solid var(--line); border-radius: 19px; background: rgba(255,255,255,.48); transition: background .25s ease, transform .25s ease; }
     .ministry-card:hover { transform: translateY(-3px); background: rgba(255,255,255,.88); }
-    .ministry-icon { display: grid; width: 46px; height: 46px; flex: 0 0 auto; place-items: center; border-radius: 15px; background: #fae6d2; color: var(--forest); }
+    .ministry-icon { display: grid; width: 46px; height: 46px; flex: 0 0 auto; place-items: center; border-radius: 15px; background: #fae6d2; color: var(--brand-orange); }
     .ministry-icon .icon { width: 21px; height: 21px; }
     .ministry-card h3 { margin: 1px 0 6px; font: 600 1.1rem var(--serif); }
     .ministry-card p { margin: 0; color: var(--muted); font-size: .78rem; line-height: 1.6; }
@@ -255,13 +255,13 @@
     .event-list { display: grid; gap: 13px; }
     .event-card { display: grid; grid-template-columns: 74px 1fr auto; align-items: center; gap: 20px; padding: 20px; border: 1px solid rgba(255,255,255,.9); border-radius: 19px; background: rgba(255,255,255,.63); transition: transform .25s ease, box-shadow .25s ease; }
     .event-card:hover { transform: translateX(4px); box-shadow: 0 12px 28px rgba(83, 52, 28, .09); }
-    .event-date { display: grid; width: 66px; height: 68px; align-content: center; justify-items: center; border-radius: 15px; background: #fae6d2; color: var(--forest); }
+    .event-date { display: grid; width: 66px; height: 68px; align-content: center; justify-items: center; border-radius: 15px; background: #fae6d2; color: var(--brand-orange); }
     .event-date strong { font: 600 1.35rem var(--serif); line-height: 1; }
     .event-date span { margin-top: 5px; font-size: .63rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
     .event-info .event-category { color: #98531f; font-size: .67rem; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
     .event-info h3 { margin: 3px 0 4px; font: 600 1.13rem var(--serif); }
     .event-info p { margin: 0; color: var(--muted); font-size: .77rem; }
-    .event-arrow { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--forest); }
+    .event-arrow { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--brand-orange); }
     .event-arrow .icon { width: 17px; height: 17px; }
     .event-disclaimer { margin: 17px 0 0; color: var(--muted); font-size: .72rem; }
 
@@ -275,7 +275,7 @@
     .message-art-caption p { margin: 8px 0 0; font: 500 1.65rem/1.25 var(--serif); }
     .message-copy .section-heading { max-width: 480px; }
     .message-copy > p { max-width: 485px; margin-bottom: 27px; color: var(--muted); }
-    .quote { display: flex; gap: 14px; margin-top: 31px; padding: 17px 19px; border-left: 2px solid var(--gold); background: rgba(255,255,255,.5); color: #536158; font: italic 1rem/1.6 var(--serif); }
+    .quote { display: flex; gap: 14px; margin-top: 31px; padding: 17px 19px; border-left: 2px solid var(--gold); background: rgba(255,255,255,.5); color: #66564a; font: italic 1rem/1.6 var(--serif); }
     .quote .icon { flex: 0 0 auto; color: #ad986e; }
 
     .community { padding: 102px 0 108px; background: #f8eee2; }
@@ -286,7 +286,7 @@
     .community-copy > p { color: var(--muted); }
     .community-points { display: grid; gap: 15px; margin-top: 25px; }
     .community-point { display: flex; align-items: start; gap: 12px; }
-    .community-point .icon { width: 20px; height: 20px; flex: 0 0 auto; margin-top: 2px; color: var(--forest); }
+    .community-point .icon { width: 20px; height: 20px; flex: 0 0 auto; margin-top: 2px; color: var(--brand-orange); }
     .community-point span { color: #62574e; font-size: .86rem; }
 
     .visit { padding: 76px 0; }
@@ -300,7 +300,7 @@
       overflow: hidden;
       padding: 55px clamp(28px, 7vw, 82px);
       border-radius: 27px;
-      background: linear-gradient(118deg, #9e4300, #bd5100 67%, #d96a12);
+      background: linear-gradient(118deg, #a34a00, #c96808 67%, #d97913);
       color: white;
     }
     .visit-panel::after { position: absolute; top: -160px; right: 19%; width: 390px; height: 390px; border: 1px solid rgba(255,255,255,.12); border-radius: 50%; box-shadow: 0 0 0 40px rgba(255,255,255,.025), 0 0 0 80px rgba(255,255,255,.025); content: ""; pointer-events: none; }
@@ -320,19 +320,19 @@
     .contact-detail .ministry-icon .icon { width: 19px; height: 19px; }
     .contact-detail strong { display: block; font-size: .81rem; }
     .contact-detail span, .contact-detail a { display: block; margin-top: 3px; color: var(--muted); font-size: .77rem; }
-    .contact-detail a:hover { color: var(--forest); }
+    .contact-detail a:hover { color: var(--brand-orange); }
     .map-card { position: relative; min-height: 390px; overflow: hidden; border: 1px solid var(--line); border-radius: 23px; background: #f1e6d9; }
     .map-card iframe { width: 100%; height: 390px; border: 0; filter: grayscale(.55) saturate(.75); }
     .map-label { position: absolute; right: 16px; bottom: 16px; left: 16px; display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 14px 16px; border: 1px solid rgba(255,255,255,.9); border-radius: 15px; background: rgba(255,255,255,.88); backdrop-filter: blur(12px); }
     .map-label strong { display: block; font-size: .8rem; }
     .map-label span { display: block; color: var(--muted); font-size: .69rem; }
-    .map-label .icon { width: 19px; height: 19px; color: var(--forest); }
+    .map-label .icon { width: 19px; height: 19px; color: var(--brand-orange); }
 
     .footer { padding: 25px 0; border-top: 1px solid var(--line); }
     .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
     .footer-note { color: var(--muted); font-size: .72rem; }
     .footer-links { display: flex; gap: 20px; color: #62574e; font-size: .73rem; }
-    .footer-links a:hover { color: var(--forest); }
+    .footer-links a:hover { color: var(--brand-orange); }
 
     [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
     [data-reveal].visible { opacity: 1; transform: translateY(0); }
@@ -659,8 +659,8 @@
           <h2 class="section-heading">We’d love to hear from you.</h2>
           <p>Have a question, need prayer, or want to know more before visiting? Reach out and we’ll be glad to connect.</p>
           <div class="contact-details">
-            <div class="contact-detail"><span class="ministry-icon"><svg class="icon"><use href="#i-pin"/></svg></span><div><strong>Find us</strong><span>San Bartolome Christian Fellowship<br>Contact us for directions and exact address.</span></div></div>
-            <div class="contact-detail"><span class="ministry-icon"><svg class="icon"><use href="#i-chat"/></svg></span><div><strong>Get in touch</strong><span>Phone and email details are not yet available.<br>Please connect with the church in person.</span></div></div>
+            <div class="contact-detail"><span class="ministry-icon"><svg class="icon"><use href="#i-pin"/></svg></span><div><strong>Find us</strong><span>#10 Omicron St. R.T Gonzales Brgy. San Bartolome, Quezon City, Philippines.</span></div></div>
+            <div class="contact-detail"><span class="ministry-icon"><svg class="icon"><use href="#i-chat"/></svg></span><div><strong>Get in touch</strong><span>Please Message our official Facebook page <a href="https://www.facebook.com/SBCFOfficial" target="_blank" rel="noopener noreferrer">Visit our page ↗</a><br>Please connect with the church in person.</span></div></div>
             <div class="contact-detail"><span class="ministry-icon"><svg class="icon"><use href="#i-globe"/></svg></span><div><strong>Social updates</strong><a href="https://www.facebook.com/SBCFOfficial" target="_blank" rel="noopener noreferrer">Search for SBCF online ↗</a></div></div>
           </div>
         </div>
