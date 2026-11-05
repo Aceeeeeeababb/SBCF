@@ -266,8 +266,8 @@
     .prayer-dialog-close { display: grid; width: 38px; height: 38px; flex: 0 0 auto; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: transparent; font-size: 1.5rem; line-height: 1; cursor: pointer; }
     .prayer-dialog-close:hover { background: #fff2e5; color: var(--brand-orange); }
     .prayer-dialog img { width: 100%; max-height: calc(100vh - 100px); object-fit: contain; background: #171717; }
-    .fellowship-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; max-height: calc(100vh - 90px); padding: 0 16px 16px; overflow-y: auto; }
-    .fellowship-gallery img { width: 100%; height: auto; max-height: none; aspect-ratio: 4 / 3; border-radius: 12px; object-fit: cover; background: #171717; }
+    .fellowship-gallery, .kids-youth-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; max-height: calc(100vh - 90px); padding: 0 16px 16px; overflow-y: auto; }
+    .fellowship-gallery img, .kids-youth-gallery img { width: 100%; height: auto; max-height: none; aspect-ratio: 4 / 3; border-radius: 12px; object-fit: cover; background: #171717; }
 
     .ministries { padding: 108px 0; }
     .ministry-heading-row { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 40px; }
@@ -581,7 +581,7 @@
 
           <article class="service-card" data-reveal>
             <span class="service-icon"><svg class="icon"><use href="#i-users"/></svg></span>
-            <h3>Kids and Youth</h3>
+            <h3><button class="service-trigger" id="kids-youth-trigger" type="button" aria-haspopup="dialog" aria-controls="kids-youth-dialog">Kids and Youth</button></h3>
             <p>Encouraging young hearts to know Jesus and grow in faith.</p>
             <div class="service-time"><svg class="icon"><use href="#i-heart"/></svg>Everyone is welcome</div>
           </article>
@@ -602,16 +602,7 @@
         </div>
         <div class="ministry-grid">
           <article class="ministry-card" data-reveal><span class="ministry-icon"><svg class="icon"><use href="#i-music"/></svg></span><div><h3>Worship &amp; Music</h3><p>Use your gifts to help our church worship and celebrate together.</p></div></article>
-          <article class="ministry-card ministry-card-youth" data-reveal>
-            <div class="ministry-card-copy">
-              <span class="ministry-icon"><svg class="icon"><use href="#i-book"/></svg></span>
-              <div><h3>Kids &amp; Youth</h3><p>Encouraging young hearts to know Jesus and grow in faith.</p></div>
-            </div>
-            <div class="ministry-youth-gallery">
-              <img src="kids.png" alt="Children sharing their faith activity" loading="lazy">
-              <img src="youth.png" alt="Youth spending time together outdoors" loading="lazy">
-            </div>
-          </article>
+          <article class="ministry-card" data-reveal><span class="ministry-icon"><svg class="icon"><use href="#i-book"/></svg></span><div><h3>Kids &amp; Youth</h3><p>Encouraging young hearts to know Jesus and grow in faith.</p></div></article>
           <article class="ministry-card" data-reveal><span class="ministry-icon"><svg class="icon"><use href="#i-hands"/></svg></span><div><h3>Prayer &amp; Care</h3><p>Making space to pray, listen, and care for one another.</p></div></article>
           <article class="ministry-card" data-reveal><span class="ministry-icon"><svg class="icon"><use href="#i-users"/></svg></span><div><h3>Small Groups</h3><p>Build friendships and explore the Bible in a welcoming setting.</p></div></article>
           <article class="ministry-card" data-reveal><span class="ministry-icon"><svg class="icon"><use href="#i-leaf"/></svg></span><div><h3>Community Care</h3><p>Share practical kindness and hope with our neighbors.</p></div></article>
@@ -756,6 +747,19 @@
     </div>
   </dialog>
 
+  <dialog class="prayer-dialog" id="kids-youth-dialog" aria-labelledby="kids-youth-dialog-title">
+    <div class="prayer-dialog-header">
+      <h2 id="kids-youth-dialog-title">Kids and Youth</h2>
+      <form method="dialog">
+        <button class="prayer-dialog-close" type="submit" aria-label="Close Kids and Youth photos">&times;</button>
+      </form>
+    </div>
+    <div class="kids-youth-gallery">
+      <img src="kids.png" alt="Children sharing their faith activity">
+      <img src="youth.png" alt="Youth spending time together outdoors">
+    </div>
+  </dialog>
+
   <footer class="footer">
     <div class="container footer-inner">
       <a class="brand" href="#home">
@@ -807,6 +811,14 @@
     fellowshipTrigger.addEventListener("click", () => fellowshipDialog.showModal());
     fellowshipDialog.addEventListener("click", (event) => {
       if (event.target === fellowshipDialog) fellowshipDialog.close();
+    });
+
+    const kidsYouthTrigger = document.querySelector("#kids-youth-trigger");
+    const kidsYouthDialog = document.querySelector("#kids-youth-dialog");
+
+    kidsYouthTrigger.addEventListener("click", () => kidsYouthDialog.showModal());
+    kidsYouthDialog.addEventListener("click", (event) => {
+      if (event.target === kidsYouthDialog) kidsYouthDialog.close();
     });
 
     const sundayWorshipTrigger = document.querySelector("#sunday-worship-trigger");
